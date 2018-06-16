@@ -22,7 +22,7 @@ with the following contents:
 
 ```js
 {
-   "*": {
+   "windows": {
       "*": [
          "pywinpty"
       ]
