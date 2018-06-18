@@ -52,7 +52,7 @@ The contents of the root folder
 in this repository
 are released
 under the *public domain*.
-The contents of the `all/` folder
+The contents of the `st*/` folder
 fall under *their own bundled licenses*.
 
 
