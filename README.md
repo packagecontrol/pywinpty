@@ -1,5 +1,9 @@
 # *pywinpty* module for Package Control
 
+
+[![Github Action](https://github.com/packagecontrol/pywinpty/workflows/test/badge.svg)](https://github.com/packagecontrol/pywinpty)
+
+
 This is the *[pywinpty][]* module
 bundled for usage with [Package Control][],
 a package manager
@@ -44,6 +48,29 @@ in any of your Python plugins.
 
 See also:
 [Documentation on Dependencies](https://packagecontrol.io/docs/dependencies)
+
+
+## Contributions
+
+
+The files were built by github [workflows][].
+
+### Personal access token
+
+The secret `${{ secrets.GITHUB_TOKEN }}` does not have the necessary permission
+to perform some of the jobs. Please following github instruction to
+generate a PAT and put it as secret `GITHUB_PAT`.
+
+### Trigger build manually
+
+The `build` workflow could be triggered by the following request.
+```bash
+curl -i -H "authorization: Bearer $GITHUB_PAT" \
+   -H 'Accept: application/vnd.github.everest-preview+json' \
+   -d '{"event_type": "build", "client_payload": {}}' \
+   https://api.github.com/repos/packagecontrol/pywinpty/dispatches
+```
+
 
 
 ## License
