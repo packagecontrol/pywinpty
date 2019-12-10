@@ -87,3 +87,4 @@ fall under *their own bundled licenses*.
 [Package Control]: http://packagecontrol.io/
 [Sublime Text]: http://sublimetext.com/
 [pypi]: https://pypi.python.org/pypi/pywinpty
+[workflows]: https://github.com/packagecontrol/pywinpty/tree/master/.github/workflows
