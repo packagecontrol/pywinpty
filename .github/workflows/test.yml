@@ -4,12 +4,9 @@ on:
   push:
     branches:
       - master
-      - st3_windows_x32
-      - st3_windows_x64
 
 jobs:
   windows:
-    if: github.ref == 'refs/heads/master' || startsWith(github.ref, 'refs/heads/st3_windows')
     runs-on: windows-latest
     strategy:
       fail-fast: false
