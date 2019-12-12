@@ -20,6 +20,11 @@ jobs:
           $ErrorActionPreference = "Continue"
           $env:PATH = "$env:CONDA;$env:CONDA\Scripts;$env:PATH"
           conda init powershell
+      - name: Download winpty dev
+        run: |
+          (New-Object net.webclient).DownloadFile("https://github.com/randy3k/winpty/releases/download/0.4.4-dev0/winpty-${{ matrix.arch }}.tar.gz","C:\winpty.tar.xz")
+          cd C:\
+          tar xzf winpty.tar.xz
       - name: Build
         run: |
           $ErrorActionPreference = "Continue"
@@ -39,17 +44,21 @@ jobs:
           $TAR = $(Get-ChildItem pywinpty*tar.gz).name
           tar xzf $TAR
           cd $($TAR -replace ".tar.gz", "")
-          $env:LIBRARY_INC = "$env:CONDA\envs\py33\Library\include"
-          $env:LIBRARY_LIB = "$env:CONDA\envs\py33\Library\lib"
+          # $env:LIBRARY_INC = "$env:CONDA\envs\py33\Library\include"
+          # $env:LIBRARY_LIB = "$env:CONDA\envs\py33\Library\lib"
+          $env:LIBRARY_INC = "C:\winpty\include\winpty"
+          $env:LIBRARY_LIB = "C:\winpty\lib"
           python setup.py build_ext -i
 
           # https://github.com/spyder-ide/pywinpty/blob/master/appveyor/publish.ps1
-          $LIB_BIN_PATH = "Library\bin"
-          $CONDA_ENV_PATH = split-path -Path ((Get-Command python).Path)
-          $CONDA_ENV_PATH
-          $CONDA_ENV_BIN = join-path $CONDA_ENV_PATH $LIB_BIN_PATH
-          $WINPTY_EXE = join-path $CONDA_ENV_BIN "winpty-agent.exe"
-          $WINPTY_DLL = join-path $CONDA_ENV_BIN "winpty.dll"
+          # $LIB_BIN_PATH = "Library\bin"
+          # $CONDA_ENV_PATH = split-path -Path ((Get-Command python).Path)
+          # $CONDA_ENV_PATH
+          # $CONDA_ENV_BIN = join-path $CONDA_ENV_PATH $LIB_BIN_PATH
+          # $WINPTY_EXE = join-path $CONDA_ENV_BIN "winpty-agent.exe"
+          # $WINPTY_DLL = join-path $CONDA_ENV_BIN "winpty.dll"
+          $WINPTY_EXE = "C:\winpty\bin\winpty-agent.exe"
+          $WINPTY_DLL = "C:\winpty\bin\winpty.dll"
 
           $MINGW_PATH = split-path -Path ((Get-Command gcc).Path)
           $MINGW_PATH
